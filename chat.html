@@ -1,0 +1,29 @@
+<html>
+    <meta http-equiv="pragma" content="no-cache" />
+    <head>
+        <script src="chat.js"></script>
+    </head>
+    <body>
+        <div>
+            <script>
+                function do_ok() {
+                    var from_id = document.getElementsByName("from_id")[0];
+                    var to_id = document.getElementsByName("to_id")[0];
+                    document.getElementsByName("from_user")[0].value = from_id.value;
+                    document.getElementsByName("to_user")[0].value = to_id.value;
+                    alert("From: " + from_id.value + ", To: " + to_id.value);
+                }
+            </script>
+            <label for="from" style="height:5%">From:</label>
+            <input type="text" name="from_id" style="height:5%" value="" />
+            <input type="hidden" name="from_user" value="" />
+            <label for="to" style="height:5%">To:</label>
+            <input type="text" name="to_id" style="height:5%" value="" />
+            <input type="hidden" name="to_user" value="" />
+            <input type="button" name="OK" style="height:5%" value="OK" onClick="javascript:do_ok();" /> 
+        </div>
+        <p></p>
+        <iframe id="msg_box" name="msg_box" src="./msg_box.html" width=100% height=70%></iframe>
+        <iframe id="type_box" name="type_box" src="./type_box.html" width=100% height=20%></iframe>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+    <meta http-equiv="pragma" content="no-cache" />
+    <head>
+        <script src="chat.js"></script>
+    </head>
+    <body>
+        <script>
+            var from_user = parent.document.getElementsByName("from_user")[0];
+            var to_user = parent.document.getElementsByName("to_user")[0];
+            function enter_msg(value, keyCode) {
+                if(keyCode == 13) {
+                    sendmessage(from_user.value, to_user.value, value, function() {
+                        insert_msg(from_user.value, value, new Date().valueOf()/1000);
+                        var msg = document.getElementById("msg");
+                        msg.value = "";
+                    });
+                }
+            }
+        </script>
+        <input type="textarea" id="msg" name="message" value="" style="text-align:top;width:100%;height:100%" onkeydown="enter_msg(value, event.keyCode)"></input>
+    </body>
+</html>

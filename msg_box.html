@@ -1,0 +1,40 @@
+<html>
+    <meta http-equiv="pragma" content="no-cache" />
+    <head>
+        <script src="chat.js"></script>
+    </head>
+    <body>
+        <h1>Message Box</h1>
+        <div id="message">
+        </div>
+        <a name="bottom"></a> 
+        <script>
+            function call_getmessage() {
+                var from_user = parent.document.getElementsByName("from_user")[0];
+                var to_user = parent.document.getElementsByName("to_user")[0];
+                if (from_user.value == "" || to_user.value == "") {
+                    return;
+                }
+                getmessage(from_user.value + "_with_" + to_user.value, processor_message);
+            }
+
+            function processor_message(data) {
+               var json_obj = JSON.parse(data); 
+               showmessage(json_obj);
+            }
+
+            function showmessage(msg_list) {
+                for(var i = 0; i < msg_list.length; i++) {
+                    var msg = msg_list[i];
+                    if (msg == null) {
+                        continue;
+                    }
+                    insert_msg(msg["from"], msg["content"], msg["timestamp"]);
+                }
+                window.location="#bottom";
+            }
+
+            window.setInterval("call_getmessage()", 1000);
+        </script>
+    </body>
+</html>
